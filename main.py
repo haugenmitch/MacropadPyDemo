@@ -1,3 +1,4 @@
+import board
 from adafruit_bitmap_font import bitmap_font
 from displayio import Bitmap
 from adafruit_macropad import MacroPad
@@ -34,9 +35,10 @@ small_font = bitmap_font.load_font("fonts/5x8.bdf", Bitmap)
 state_text = macropad.display_text(font=small_font)
 state_text.show()
 
+i2c = board.I2C()
 i2c_last_update = 0
+i2c_addrs = []
 encoder_pos = 0
-i2c_found = [False] * 0x80
 keys_pressed = [False] * macropad.keys.key_count
 state_text[0].text = "* Adafruit Macropad *"
 state_text[1].text = "Rotary encoder: 0"
@@ -63,18 +65,17 @@ while True:
         i2c_last_update = curr
         print("Scanning I2C:")
         print("Found I2C address ", end="")
-        for i in range(0, 0x80):
-            i2c_found[i] = False  # TODO: update
-            if i2c_found[i]:
-                print(f"0x{hex(i)}, ", end="")
+        i2c_addrs = []
+        for addr in i2c.scan():
+            i2c_addrs.append(addr)
+            print(f"0x{hex(addr)}, ", end="")
         print()
 
-    i2c_text = "I2C Scan: "
-    for i in range(0, 0x80):
-        if i2c_found[i]:
-            i2c_text += f"0x{hex(i)} "
-    if state_text[2].text != i2c_text:
-        state_text[2].text = i2c_text
+        i2c_text = "I2C Scan: "
+        for addr in i2c_addrs:
+            i2c_text += f"0x{hex(addr)} "
+        if state_text[2].text != i2c_text:
+            state_text[2].text = i2c_text
 
     macropad.encoder_switch_debounced.update()
     if macropad.encoder_switch_debounced.pressed:
