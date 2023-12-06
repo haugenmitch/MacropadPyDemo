@@ -35,3 +35,7 @@ This project was created using CircuitPython 8, but may be compatible with other
 ### Fonts
 
 The default CircuitPython font is too large for this project. Download [this font file](https://github.com/olikraus/u8g2/blob/master/tools/font/bdf/5x8.bdf) from [this incredible selection of fonts](https://github.com/olikraus/u8g2/tree/master/tools/font) from [olikraus](https://github.com/olikraus) and place it in a new directory you create called "fonts" at the root directory of the device (i.e. `CIRCUITPY/fonts/`).
+
+### Code
+
+Once you have the libraries and font loaded, copy/paste [main.py](main.py) to the root directory of the device. If you've done everything correctly, the device should automatically reload and boot into the program.
