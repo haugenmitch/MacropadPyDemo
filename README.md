@@ -2,7 +2,9 @@
 
 This project is a [CircuitPython](https://github.com/adafruit/circuitpython) rewrite of the [Arduino demo](https://learn.adafruit.com/adafruit-macropad-rp2040/arduino) ([video](https://learn.adafruit.com/assets/103257)) that comes packaged with the [Adafruit Macropad RP2040](https://learn.adafruit.com/adafruit-macropad-rp2040).
 
-![Video of the demo running on the Macropad RP2040](demo.gif)
+<p align="center">
+    <img src="demo.gif" alt="Video of the demo running on the Macropad RP2040"/>
+</p>
 
 This project is intended for educational purposes. Feel free to make use of this project pursuant to the [license](LICENSE).
 
